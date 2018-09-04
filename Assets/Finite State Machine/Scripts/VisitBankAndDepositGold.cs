@@ -20,17 +20,33 @@ public class VisitBankAndDepositGold<T> : IState<Miner> {
 
 	public void Enter(Miner entity)
 	{
-		throw new System.NotImplementedException();
+		if (entity.Location != Location.Bank )
+		{
+			entity.Location = Location.Bank;
+		};
 	}
 
 	public void Execute(Miner entity)
 	{
-		throw new System.NotImplementedException();
+		entity.MoneyInBank += entity.GoldCarried;
+		Debug.Log($"{entity.Name}: Depositing {entity.GoldCarried} gold in my account. Now I have {entity.MoneyInBank} in total");
+		entity.GoldCarried = 0;
+
+		if (entity.Fatigued)
+		{
+			Debug.Log($"{entity.Name}: I'm feeling tired. I'm going home for a nap.");
+			entity.StateMachine.ChangeState(GoHomeAndSleepUntilRested<Miner>.Instance);
+		}
+		else
+		{
+			Debug.Log($"{entity.Name}: My bag is empty. I'm going back to the Mine find more gold!");
+			entity.StateMachine.ChangeState(EnterMineAndDigForNugget<Miner>.Instance);
+		}
 	}
 
 	public void Exit(Miner entity)
 	{
-		throw new System.NotImplementedException();
+		Debug.Log($"{entity.Name}: Leaving the bank");
 	}
 
 	public bool OnMessage()

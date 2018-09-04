@@ -36,21 +36,29 @@ public class EnterMineAndDigForNugget<T> : IState<Miner>
 			miner.GoldCarried++;
 		}
 
-		if (miner.Thirst)
+		if (miner.GoldCarried >= miner.GoldCarriedLimit || miner.Fatigued)
 		{
-			miner.StateMachine.ChangeState(QuenchThirst<Miner>.Instance);
+			Debug.Log($"{ miner.Name}: My bag is full of gold!");
+			miner.StateMachine.ChangeState(VisitBankAndDepositGold<Miner>.Instace);
 		}
 
 		if (miner.Fatigued)
 		{
-			miner.StateMachine.ChangeState(GoHomeAndSleepUntilRested<Miner>.Instance);
+			Debug.Log($"{ miner.Name}: I'm so tired!");
+			miner.StateMachine.ChangeState(VisitBankAndDepositGold<Miner>.Instace);
+		}
+
+		if (miner.Thirst)
+		{
+			Debug.Log($"{ miner.Name}: I really need a beer.");
+			miner.StateMachine.ChangeState(QuenchThirst<Miner>.Instance);
 		}
 
 	}
 
 	public void Exit(Miner miner)
 	{
-		throw new System.NotImplementedException();
+		Debug.Log($"{miner.Name}: I'am leaving the Mine.");
 	}
 
 	public bool OnMessage()

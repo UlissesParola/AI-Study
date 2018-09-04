@@ -142,11 +142,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Bob
   GoldCarried: 0
+  GoldCarriedLimit: 0
   MoneyInBank: 0
   Thirst: 0
-  Fatigue: 0
+  ThirstLimit: 3
+  Fatigued: 0
+  FatigueLimit: 5
   Location: 0
-  StateMachine: {fileID: 0}
 --- !u!4 &1422373525
 Transform:
   m_ObjectHideFlags: 0

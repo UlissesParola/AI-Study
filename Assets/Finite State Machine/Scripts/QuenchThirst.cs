@@ -20,17 +20,22 @@ public class QuenchThirst<T> : IState<Miner> {
 
 	public void Enter(Miner entity)
 	{
-		throw new System.NotImplementedException();
+		if (entity.Location != Location.Saloon)
+		{
+			entity.Location = Location.Saloon;
+		}
 	}
 
 	public void Execute(Miner entity)
 	{
-		throw new System.NotImplementedException();
+		Debug.Log($"{entity.Name}: Hey, bartender, bring me a beer!");
+		entity.Drink();
+		entity.StateMachine.ChangeState(EnterMineAndDigForNugget<Miner>.Instance);
 	}
 
 	public void Exit(Miner entity)
 	{
-		throw new System.NotImplementedException();
+		Debug.Log($"{entity.Name}: Nothing like a cold beer!");
 	}
 
 	public bool OnMessage()

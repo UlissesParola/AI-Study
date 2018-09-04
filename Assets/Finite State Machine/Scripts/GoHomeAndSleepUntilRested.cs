@@ -20,17 +20,28 @@ public class GoHomeAndSleepUntilRested<T> : IState<Miner>{
 
 	public void Enter(Miner entity)
 	{
-		throw new System.NotImplementedException();
+		if (entity.Location != Location.House)
+		{
+			entity.Location = Location.House;
+		}
+
+		Debug.Log($"{entity.Name}: I will take a nap.");
 	}
 
 	public void Execute(Miner entity)
 	{
-		throw new System.NotImplementedException();
+		entity.Rest();
+		Debug.Log($"{entity.Name}: Zzzz");
+
+		if (entity.Fatigued == false)
+		{
+			entity.StateMachine.ChangeState(EnterMineAndDigForNugget<Miner>.Instance);
+		}
 	}
 
 	public void Exit(Miner entity)
 	{
-		throw new System.NotImplementedException();
+		Debug.Log($"{entity.Name}: I'm feeling rested now.");
 	}
 
 	public bool OnMessage()

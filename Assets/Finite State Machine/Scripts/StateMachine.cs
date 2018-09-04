@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class StateMachine<IEntity> : MonoBehaviour
+public class StateMachine<IEntity>
 {
 	public IState<IEntity> GlobalState;
 	public IState<IEntity> CurrentState;
@@ -26,6 +26,11 @@ public class StateMachine<IEntity> : MonoBehaviour
 	public void RevertToPreviousState()
 	{
 		ChangeState(PreviousState);
+	}
+
+	public void ExecuteState()
+	{
+		CurrentState.Execute(Entity);
 	}
 
 	//public void InitialConfig(IEntity entity, IState<IEntity> globalState, IState<IEntity> currentState)
