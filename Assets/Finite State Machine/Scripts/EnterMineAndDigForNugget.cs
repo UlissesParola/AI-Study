@@ -38,7 +38,12 @@ public class EnterMineAndDigForNugget<T> : IState<Miner>
 
 		if (miner.Thirst)
 		{
-			miner.StateMachine.ChangeState()
+			miner.StateMachine.ChangeState(QuenchThirst<Miner>.Instance);
+		}
+
+		if (miner.Fatigued)
+		{
+			miner.StateMachine.ChangeState(GoHomeAndSleepUntilRested<Miner>.Instance);
 		}
 
 	}

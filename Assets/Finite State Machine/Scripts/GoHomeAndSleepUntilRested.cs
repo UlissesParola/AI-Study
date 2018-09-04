@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GoHomeAndSleepUntilRested<T> : IState<Miner>{
 
-	private GoHomeAndSleepUntilRested<Miner> _instace;
-	public GoHomeAndSleepUntilRested<Miner> Instance
+	private static GoHomeAndSleepUntilRested<Miner> _instace;
+	public static GoHomeAndSleepUntilRested<Miner> Instance
 	{
 		get
 		{

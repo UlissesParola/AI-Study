@@ -26,7 +26,7 @@ public class Miner : MonoBehaviour, IEntity {
 		}
 		
 		StateMachine.Entity = this;
-		StateMachine.CurrentState = new EnterMineAndDigForNugget<Miner>();
+		StateMachine.CurrentState = EnterMineAndDigForNugget<Miner>.Instance;
 
 	}
 	
