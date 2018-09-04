@@ -140,9 +140,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eba8face523b8d34282e7c14eece1d94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpdateDelay: 2
   Name: Bob
   GoldCarried: 0
-  GoldCarriedLimit: 0
+  GoldCarriedLimit: 10
   MoneyInBank: 0
   Thirst: 0
   ThirstLimit: 3
